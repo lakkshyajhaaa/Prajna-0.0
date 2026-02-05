@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+
+# Datasets
+dataset/
+dataset/**
+*.jpg
+*.png
+
+# Models
+*.pth
+*.pt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environments
+venv/
+.env/
+
+# Personal notes / PDFs
+Notes/
+*.pdf
