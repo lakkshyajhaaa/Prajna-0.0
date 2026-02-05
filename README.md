@@ -4,7 +4,7 @@
 
 Instead of relying purely on accuracy, the system introduces a *responsibility layer* that measures confidence, uncertainty, and decisiveness at the level of individual predictions.
 
----
+
 
 ## Motivation
 
@@ -18,7 +18,6 @@ In real-world, safety-critical settings, a *wrong but confident* prediction can 
 
 This aligns with the principles of Responsible AI and human-in-the-loop decision making.
 
----
 
 ## What the system does
 
@@ -35,7 +34,7 @@ These metrics are combined into a single **responsibility score**, which drives 
 - **REVIEW** – prediction requires human verification  
 - **REJECT** – system abstains from deciding  
 
----
+
 
 ## Key features
 
@@ -45,7 +44,6 @@ These metrics are combined into a single **responsibility score**, which drives 
 - Interactive Streamlit interface for analysis and demonstration  
 - Dataset-wide evaluation and single-image inspection  
 
----
 
 ## Technology stack
 
@@ -55,13 +53,14 @@ These metrics are combined into a single **responsibility score**, which drives 
 - Streamlit  
 - NumPy, Pandas  
 
----
+
 
 ## Running the application
 
 ```bash
 pip install -r requirements.txt
 streamlit run app.py
+```
 
 ## Dataset
 
