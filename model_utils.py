@@ -7,7 +7,7 @@ from torchvision.models import ResNet18_Weights
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-# ---------- Load trained model ----------
+#Load trained model
 model = models.resnet18(weights=ResNet18_Weights.DEFAULT)
 model.fc = nn.Linear(model.fc.in_features, 2)
 model.load_state_dict(torch.load("model.pth", map_location=device))
@@ -16,7 +16,7 @@ model.eval()
 
 class_names = ["day", "night"]
 
-# ---------- Image preprocessing ----------
+#Image preprocessing
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
@@ -26,7 +26,7 @@ transform = transforms.Compose([
     )
 ])
 
-# ---------- Core functions ----------
+#Core functions
 def get_probabilities(image_tensor):
     image_tensor = image_tensor.unsqueeze(0).to(device)
     with torch.no_grad():

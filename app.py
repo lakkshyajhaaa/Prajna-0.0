@@ -1,6 +1,5 @@
-# ==========================================
-# प्रज्ञा — RESPONSIBLE AI DECISION SYSTEM
-# ==========================================
+
+# प्रज्ञा — RESPONSIBLE AI DECISION 
 
 import os
 from PIL import Image
@@ -14,9 +13,9 @@ from torchvision import datasets, transforms, models
 from torchvision.models import ResNet18_Weights
 
 
-# -------------------------
+
 # STREAMLIT CONFIG
-# -------------------------
+
 st.set_page_config(
     page_title="प्रज्ञा",
     layout="wide"
@@ -25,9 +24,8 @@ st.set_page_config(
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 
-# -------------------------
 # LOAD TRAINED MODEL
-# -------------------------
+
 model = models.resnet18(weights=ResNet18_Weights.DEFAULT)
 model.fc = nn.Linear(model.fc.in_features, 2)
 model.load_state_dict(torch.load("model.pth", map_location=device))
@@ -37,9 +35,9 @@ model.eval()
 class_names = ["day", "night"]
 
 
-# -------------------------
+
 # IMAGE TRANSFORM
-# -------------------------
+
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
@@ -50,15 +48,15 @@ transform = transforms.Compose([
 ])
 
 
-# -------------------------
+
 # LOAD TEST DATA
-# -------------------------
+
 test_data = datasets.ImageFolder("dataset/test", transform=transform)
 
 
-# -------------------------
+
 # RESPONSIBILITY METRICS
-# -------------------------
+
 def get_probabilities(image):
     image = image.unsqueeze(0).to(device)
     with torch.no_grad():
@@ -94,9 +92,9 @@ def decision(R):
         return "REJECT"
 
 
-# -------------------------
+
 # UI HEADER (UPGRADED)
-# -------------------------
+
 st.markdown("""
 <h1 style='font-size:48px;'>प्रज्ञा <span style="font-size:22px; color:gray;">0.0</span></h1>
 <p style="font-size:20px;">Prajñā — Responsible AI Decision Framework</p>
@@ -107,9 +105,9 @@ but <b>whether that prediction should be trusted</b>.
 """, unsafe_allow_html=True)
 
 
-# -------------------------
+
 # MODE SELECTION
-# -------------------------
+
 mode = st.radio(
     "Select Mode",
     ["Analyze Test Dataset", "Check Uploaded Image"],
@@ -117,9 +115,9 @@ mode = st.radio(
 )
 
 
-# =====================================================
+
 # MODE 1: DATASET ANALYSIS
-# =====================================================
+
 if mode == "Analyze Test Dataset":
 
     if st.button("Run Responsibility Analysis on Test Set"):
@@ -191,9 +189,9 @@ if mode == "Analyze Test Dataset":
         st.write(f"Rejected: {(results_df['Decision'] == 'REJECT').sum()}")
 
 
-# =====================================================
+
 # MODE 2: UPLOADED IMAGE
-# =====================================================
+
 if mode == "Check Uploaded Image":
 
     st.subheader("Upload Image")
